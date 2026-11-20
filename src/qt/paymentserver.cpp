@@ -79,7 +79,7 @@ namespace // Anon namespace
 //
 static QString ipcServerName()
 {
-    QString name("SugarchainQt");
+    QString name("NexCoinQt");
 
     // Append a simple hash of the datadir
     // Note that GetDataDir(true) returns a different path
