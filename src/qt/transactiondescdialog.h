@@ -6,6 +6,7 @@
 #define BITCOIN_QT_TRANSACTIONDESCDIALOG_H
 
 #include <QDialog>
+#include <QPersistentModelIndex>
 
 namespace Ui {
     class TransactionDescDialog;
@@ -24,8 +25,12 @@ public:
     explicit TransactionDescDialog(const QModelIndex &idx, QWidget *parent = 0);
     ~TransactionDescDialog();
 
+private Q_SLOTS:
+    void updateDetail();
+
 private:
     Ui::TransactionDescDialog *ui;
+    QPersistentModelIndex m_index;
 };
 
 #endif // BITCOIN_QT_TRANSACTIONDESCDIALOG_H

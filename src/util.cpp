@@ -82,8 +82,8 @@
 // Application startup time (used for uptime calculation)
 const int64_t nStartupTime = GetTime();
 
-const char * const BITCOIN_CONF_FILENAME = "sugarchain.conf";
-const char * const BITCOIN_PID_FILENAME = "sugarchaind.pid";
+const char * const BITCOIN_CONF_FILENAME = "nexcoin.conf";
+const char * const BITCOIN_PID_FILENAME = "nexcoind.pid";
 const char * const DEFAULT_DEBUGLOGFILE = "debug.log";
 
 ArgsManager gArgs;
@@ -598,7 +598,7 @@ static std::string FormatException(const std::exception* pex, const char* pszThr
     char pszModule[MAX_PATH] = "";
     GetModuleFileNameA(nullptr, pszModule, sizeof(pszModule));
 #else
-    const char* pszModule = "sugarchain";
+    const char* pszModule = "nexcoin";
 #endif
     if (pex)
         return strprintf(

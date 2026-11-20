@@ -35,7 +35,7 @@
 #include <memory>
 
 #if defined(NDEBUG)
-# error "Sugarchain cannot be compiled without assertions."
+# error "NexCoin cannot be compiled without assertions."
 #endif
 
 std::atomic<int64_t> nTimeBestReceived(0); // Used only to inform the wallet of when we last received a block
@@ -3832,10 +3832,8 @@ bool PeerLogicValidation::SendMessages(CNode* pto, std::atomic<bool>& interruptM
         // Keep deep IBD header-only until the best header is effectively at
         // the network tip. Mixing thousands of in-flight block responses into
         // the header-sync connection can otherwise starve header delivery.
-        static const int HEADER_SYNC_TIP_THRESHOLD = 17;
-        const bool fHeadersSynced = pindexBestHeader != nullptr &&
-            pindexBestHeader->GetBlockTime() > GetAdjustedTime() -
-                consensusParams.nPowTargetSpacing * HEADER_SYNC_TIP_THRESHOLD;
+        // NexCoin: Always allow block download when best header is known
+        const bool fHeadersSynced = (pindexBestHeader != nullptr);
         static const unsigned int MAX_IBD_BLOCKS_IN_FLIGHT_PER_PEER = 2000;
         static const unsigned int MIN_IBD_BLOCKS_IN_FLIGHT_PER_PEER = 128;
         static const unsigned int IBD_DELIVERY_TARGET_SECONDS = 2;

@@ -11,15 +11,28 @@
 
 TransactionDescDialog::TransactionDescDialog(const QModelIndex &idx, QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::TransactionDescDialog)
+    ui(new Ui::TransactionDescDialog),
+    m_index(idx)
 {
     ui->setupUi(this);
     setWindowTitle(tr("Details for %1").arg(idx.data(TransactionTableModel::TxIDRole).toString()));
-    QString desc = idx.data(TransactionTableModel::LongDescriptionRole).toString();
-    ui->detailText->setHtml(desc);
+    updateDetail();
+
+    if (idx.isValid() && idx.model()) {
+        connect(idx.model(), &QAbstractItemModel::dataChanged, this, &TransactionDescDialog::updateDetail);
+        connect(idx.model(), &QAbstractItemModel::rowsInserted, this, &TransactionDescDialog::updateDetail);
+    }
 }
 
 TransactionDescDialog::~TransactionDescDialog()
 {
     delete ui;
+}
+
+void TransactionDescDialog::updateDetail()
+{
+    if (m_index.isValid()) {
+        QString desc = m_index.data(TransactionTableModel::LongDescriptionRole).toString();
+        ui->detailText->setHtml(desc);
+    }
 }

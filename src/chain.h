@@ -30,7 +30,7 @@ Option2: N*T/42.5 = 510*5/42.5 = 60
 7200 / 120 = 60(sec)
 60(sec) = 12(blocks)
 Bitcoin: 7200s == 12 blocks (blocktime: 600s)
-Sugarchain: 60s == 12 blocks (blocktime: 5s)
+NexCoin: 60s == 12 blocks (blocktime: 5s)
 */
 
 static const int64_t MAX_FUTURE_BLOCK_TIME = 2 * 60 * 60 / 120; // 7200/120=60(sec) // 12(blocks) // FIXME.SUGAR // SURE?

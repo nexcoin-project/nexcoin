@@ -144,7 +144,7 @@ void WalletModel::pollBalanceChanged()
 
         // FIXME.SUGAR // SURE?
         // update every blocks >> 12 blocks // 5*12 = 60s
-        if(chainActive.Height() - cachedNumBlocks >= 12)
+        if (chainActive.Height() != cachedNumBlocks)
         {
             // BEGIN - DEBUG for checking polled?
             /*

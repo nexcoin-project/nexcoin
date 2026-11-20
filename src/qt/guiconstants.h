@@ -47,7 +47,7 @@ static const int MAX_URI_LENGTH = 255;
 #define SPINNER_FRAMES 36
 
 #define QAPP_ORG_NAME "NexCoin"
-#define QAPP_ORG_DOMAIN "nexcoin.org"
+#define QAPP_ORG_DOMAIN "nexcoin.net"
 #define QAPP_APP_NAME_DEFAULT "NexCoin-Qt"
 #define QAPP_APP_NAME_TESTNET "NexCoin-Qt-testnet"
 

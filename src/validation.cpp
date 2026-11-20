@@ -51,7 +51,7 @@
 #include <boost/thread.hpp>
 
 #if defined(NDEBUG)
-# error "Sugarchain cannot be compiled without assertions."
+# error "NexCoin cannot be compiled without assertions."
 #endif
 
 #define MICRO 0.000001
@@ -241,7 +241,7 @@ CTxMemPool mempool(&feeEstimator);
 /** Constant stuff for coinbase transactions we create: */
 CScript COINBASE_FLAGS;
 
-const std::string strMessageMagic = "Sugarchain Signed Message:\n";
+const std::string strMessageMagic = "NexCoin Signed Message:\n";
 
 // Internal stuff
 namespace {
@@ -1764,7 +1764,7 @@ static bool WriteTxIndexDataForBlock(const CBlock& block, CValidationState& stat
 static CCheckQueue<CScriptCheck> scriptcheckqueue(128);
 
 void ThreadScriptCheck() {
-    RenameThread("sugarchain-scriptch");
+    RenameThread("nexcoin-scriptch");
     scriptcheckqueue.Thread();
 }
 

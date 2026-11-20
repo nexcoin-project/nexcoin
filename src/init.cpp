@@ -182,7 +182,7 @@ void Shutdown()
     /// for example if the data directory was found to be locked.
     /// Be sure that anything that writes files or flushes caches only does this if the respective
     /// module was initialized.
-    RenameThread("sugarchain-shutoff");
+    RenameThread("nexcoin-shutoff");
     mempool.AddTransactionsUpdated(1);
 
     StopHTTPRPC();
@@ -528,11 +528,11 @@ std::string HelpMessage(HelpMessageMode mode)
 }
 
 // FIXME.SUGAR
-// QT About Sugarchain
+// QT About NexCoin
 std::string LicenseInfo()
 {
-    const std::string URL_SOURCE_CODE = "<https://github.com/sugarchain-project/sugarchain>";
-    const std::string URL_WEBSITE = "<https://sugarchain.org>";
+    const std::string URL_SOURCE_CODE = "<https://github.com/nexcoin-project/nexcoin>";
+    const std::string URL_WEBSITE = "<https://nexcoin.net>";
 
     // BEGIN - Adding Additional CopyrightHolders (1/2)
     const std::string Copyright_1 = strprintf(_("Copyright (C) %i-%i"), 2009, 2010) + " " + "Satoshi Nakamoto";
@@ -650,7 +650,7 @@ void CleanupBlockRevFiles()
 void ThreadImport(std::vector<fs::path> vImportFiles)
 {
     const CChainParams& chainparams = Params();
-    RenameThread("sugarchain-loadblk");
+    RenameThread("nexcoin-loadblk");
 
     {
     CImportingNow imp;
@@ -1251,9 +1251,9 @@ bool AppInitMain()
     // Warn about relative -datadir path.
     if (gArgs.IsArgSet("-datadir") && !fs::path(gArgs.GetArg("-datadir", "")).is_absolute()) {
         LogPrintf("Warning: relative datadir option '%s' specified, which will be interpreted relative to the "
-                  "current working directory '%s'. This is fragile, because if sugarchain is started in the future "
+                  "current working directory '%s'. This is fragile, because if nexcoin is started in the future "
                   "from a different location, it will be unable to locate the current data files. There could "
-                  "also be data loss if sugarchain is started while in a temporary directory.\n",
+                  "also be data loss if nexcoin is started while in a temporary directory.\n",
             gArgs.GetArg("-datadir", ""), fs::current_path().string());
     }
 
