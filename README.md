@@ -1,7 +1,7 @@
 # NexCoin Core (NXC)
 
 <p align="center">
-  <img src="share/pixmaps/bitcoin128.png" width="128" alt="NexCoin Logo" />
+  <img src="share/pixmaps/nexcoin.png" width="160" alt="NexCoin Logo" />
 </p>
 
 <p align="center">
