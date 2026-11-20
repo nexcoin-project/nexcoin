@@ -1173,7 +1173,7 @@ CAmount GetBlockSubsidy(int nHeight, const Consensus::Params& consensusParams)
         return 0;
 
     // FIXME.SUGAR // SURE?
-    CAmount nSubsidy = 42.94967296 * COIN; // 2^32/COIN = 42.94967296 (was 50)
+    CAmount nSubsidy = 2 * COIN; // 2^32/COIN = 42.94967296 (was 50)
 
     // DEBUG - SUGAR
     /*if (halvings == 1) { // no output if it zero(0)

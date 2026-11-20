@@ -93,7 +93,7 @@ static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesi
  */
 static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
-    const char* pszTimestamp = "The Times 17/July/2019 Bitcoin falls after senators call Facebook delusional over libra";
+    const char* pszTimestamp = "The Times 20/Nov/2026 NexCoin Launch: Pure CPU One-Vote Fair Decentralization";
     const CScript genesisOutputScript = CScript() << ParseHex("04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f") << OP_CHECKSIG;
     return CreateGenesisBlock(pszTimestamp, genesisOutputScript, nTime, nNonce, nBits, nVersion, genesisReward);
 }
@@ -132,7 +132,7 @@ public:
         // Total Supply in COINs (in theory):	1073741824
         // Total Supply in COINs (in actual):	1073741823.87500000
         // Difference: 0.125
-        consensus.nSubsidyHalvingInterval = 12500000;
+        consensus.nSubsidyHalvingInterval = 6000000;
 
         consensus.BIP16Height = 0;  // always on
         consensus.BIP34Height = 17;
@@ -228,46 +228,34 @@ public:
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
          * a large 32-bit integer with any alignment.
          */
-        pchMessageStart[0] = 0x9f;
-        pchMessageStart[1] = 0xeb;
-        pchMessageStart[2] = 0x4b;
-        pchMessageStart[3] = 0x9d;
-        nDefaultPort = 34230;
+        pchMessageStart[0] = 0x4e;
+        pchMessageStart[1] = 0x58;
+        pchMessageStart[2] = 0x43;
+        pchMessageStart[3] = 0x01;
+        nDefaultPort = 9333;
         nPruneAfterHeight = 100000;
 
-        // nTime: date -d '2019-08-16 00:00:00 KST' +%s = 1565881200
-        // genesisReward: pow(2,32) / COIN = 42.94967296 (was 50)
-        genesis = CreateGenesisBlock(1565881200, 247, 0x1f3fffff, 1, 42.94967296 * COIN);
+        genesis = CreateGenesisBlock(1795141411, 410, 0x1f3fffff, 1, 2 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
 
-        // DEBUG - SUGAR
-        // printf("***\n");
-        // printf("genesis.GetPoWHash.MAIN = %s\n", genesis.GetPoWHash().ToString().c_str());
-        // printf("genesis.GetHash.MAIN = %s\n", genesis.GetHash().ToString().c_str());
-        // printf("genesis.hashMerkleRoot.MAIN %s\n",genesis.hashMerkleRoot.ToString().c_str());
-        // printf("***\n");
-
-        assert(genesis.GetPoWHash() == uint256S("0031205acedcc69a9c18f79b84790179d68fb90588bedee6587ff701bdde04eb")); // genesis
-        assert(consensus.hashGenesisBlock == uint256S("7d5eaec2dbb75f99feadfa524c78b7cabc1d8c8204f79d4f3a83381b811b0adc")); // genesis
-        assert(genesis.hashMerkleRoot == uint256S("7677ce2a579cb0411d1c9e6b1e9072b8f537f1e59cb387dacac2daac56e150b0"));
+        assert(genesis.GetPoWHash() == uint256S("001e630f3f7874404c1c517dd610132de7a7351d207478ad0930b09301884642"));
+        assert(consensus.hashGenesisBlock == uint256S("2c2a278a81d7e1a8184ed2c2cacee7bd1b3da62059c8f6df7c69000c61149d49"));
+        assert(genesis.hashMerkleRoot == uint256S("c33738f470e466658c741d1bd953c5c71e81f1d7659082e2c700a147b52feab7"));
 
         // Note that of those which support the service bits prefix, most only support a subset of
         // possible options.
         // This is fine at runtime as we'll fall back to using them as a oneshot if they dont support the
         // service bits we want, but we should get them updated to support all service bits wanted by any
         // release ASAP to avoid it where possible.
-        vSeeds.emplace_back("1seed.sugarchain.info"); // cryptozeny
-        vSeeds.emplace_back("2seed.sugarchain.info"); // cryptozeny
-        vSeeds.emplace_back("seed.sugarchain.site"); // ROZ
-        vSeeds.emplace_back("seed.sugar.hel.lu"); // Hel
+        vSeeds.emplace_back("43.131.9.171");
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,63);  // legacy: starting with S (upper)
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,125); // p2sh-segwit: starting with s (lower)
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,53);  // legacy: starting with N (upper)
+        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,112); // p2sh-segwit: starting with n (lower)
         base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,128);
         base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x88, 0xB2, 0x1E};
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x88, 0xAD, 0xE4};
 
-        bech32_hrp = "sugar";   // bech32: starting with sugar1q
+        bech32_hrp = "nex";   // bech32: starting with nex1q
 
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_main, pnSeed6_main + ARRAYLEN(pnSeed6_main));
 
@@ -277,28 +265,14 @@ public:
 
         checkpointData = {
             {
-                {1, uint256S("ce8a0df339f2edceb99c5325c95b2b0ae752e29de1193f6113549f0e1cae7c91")},
-                {510, uint256S("f6f565e58812f89d8ea2aca296b9934ea82918f5bd443312af90b0be1465dbd1")},
-                {511, uint256S("ef160a17b4ecc855d00dd6ce051df72f1e690d91811b74c50751ada2e14c5f1a")},
-                {512, uint256S("094afbe86930e4950c601fde563cd2c7b9d050c1b567ad6fe48ae3b15a705ebb")},
-                {900000, uint256S("8a566a463925cf028cb427edb6d4d18a9c1213bf472d9032369c4e45449eb71c")},
-                {2601511, uint256S("e30af0fcf522354f43c3ab2cfb4805d175b1264608b6124eab0b635bdea2589d")}, // 2601511=2601001+510
-                {4422211, uint256S("1f4186606aaab3cb3818f073599602e573476da9fed0b65c9f14646210d6b18f")}, // 4422211=4421701+510
-                {6513497, uint256S("855f0c66238bc0246c8ca25cf958283fd49b9fb4b217ddeb518e5ea9f5071b9e")},
-                // This is also the block whose chainwork is nMinimumChainWork.
-                // Minimum chain work at height 37,500,000 (latest halving).
-                {37500000, uint256S("4637782372a194f62d0e01264d90bac655aa86d273459fcdc7c0bc27d1a0f867")},
-                // 2026-09-17; over seven days and 136,000 blocks deep when selected.
-                {44450000, uint256S("8681ed0285025f1f4d43ce84a61eea44b55fcd9509aa2dc3e1e76dddc0aa84f0")},
+                {0, uint256S("2c2a278a81d7e1a8184ed2c2cacee7bd1b3da62059c8f6df7c69000c61149d49")},
             }
         };
 
-        // TODO.SUGAR.UPDATE
         chainTxData = ChainTxData{
-            // Data from RPC: getchaintxstats 4096 855f0c66238bc0246c8ca25cf958283fd49b9fb4b217ddeb518e5ea9f5071b9e (6513497)
-            /* nTime    */ 1599181736,
-            /* nTxCount */ 6858263,
-            /* dTxRate  */ 0.2053689306146399
+            1795141411,
+            0,
+            0
         };
     }
 };

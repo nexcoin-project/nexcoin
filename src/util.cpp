@@ -623,7 +623,7 @@ fs::path GetDefaultDataDir()
     // Unix: ~/.bitcoin
 #ifdef WIN32
     // Windows
-    return GetSpecialFolderPath(CSIDL_APPDATA) / "Sugarchain";
+    return GetSpecialFolderPath(CSIDL_APPDATA) / "NexCoin";
 #else
     fs::path pathRet;
     char* pszHome = getenv("HOME");
@@ -633,10 +633,10 @@ fs::path GetDefaultDataDir()
         pathRet = fs::path(pszHome);
 #ifdef MAC_OSX
     // Mac
-    return pathRet / "Library/Application Support/Sugarchain";
+    return pathRet / "Library/Application Support/NexCoin";
 #else
     // Unix
-    return pathRet / ".sugarchain";
+    return pathRet / ".nexcoin";
 #endif
 #endif
 }
