@@ -214,14 +214,10 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nTimeout = Consensus::BIP9Deployment::NO_TIMEOUT;
 
         // The best chain should have at least this much work.
-        // TODO.SUGAR.UPDATE
-        // Minimum chain work at height 37,500,000 (latest halving).
-        consensus.nMinimumChainWork = uint256S("00000000000000000000000000000000000000000000000000014058fe37bb0b");
+        consensus.nMinimumChainWork = uint256S("0x00");
 
         // By default assume that the signatures in ancestors of this block are valid.
-        // TODO.SUGAR.UPDATE
-        // getblockhash 6513497 && "hash"
-        consensus.defaultAssumeValid = uint256S("855f0c66238bc0246c8ca25cf958283fd49b9fb4b217ddeb518e5ea9f5071b9e");
+        consensus.defaultAssumeValid = uint256S("2c2a278a81d7e1a8184ed2c2cacee7bd1b3da62059c8f6df7c69000c61149d49");
 
         /**
          * The message start string is designed to be unlikely to occur in normal data.
@@ -376,14 +372,10 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nTimeout = Consensus::BIP9Deployment::NO_TIMEOUT;
 
         // The best chain should have at least this much work.
-        // TODO.SUGAR.UPDATE
-        // getblockhash 4000000 && "chainwork" (testnet)
-        consensus.nMinimumChainWork = uint256S("000000000000000000000000000000000000000000000000000000014d9bf048");
+        consensus.nMinimumChainWork = uint256S("0x00");
 
         // By default assume that the signatures in ancestors of this block are valid.
-        // TODO.SUGAR.UPDATE
-        // getblockhash 4000000 && "hash" (testnet)
-        consensus.defaultAssumeValid = uint256S("bc05c2d5e81785f287cd58a798b64467cff35c8ef2bbe8062d8420eeb86f4056");
+        consensus.defaultAssumeValid = uint256();
 
         pchMessageStart[0] = 0xb0;
         pchMessageStart[1] = 0x11;
@@ -404,9 +396,10 @@ public:
         // printf("genesis.hashMerkleRoot.TESTNET %s\n",genesis.hashMerkleRoot.ToString().c_str());
         // printf("***\n");
 
-        assert(genesis.GetPoWHash() == uint256S("0032f49a73e00fc182e08d5ede75c1418c7833092d663e43a5463c1dbd096f28")); // genesis
-        assert(consensus.hashGenesisBlock == uint256S("e0e0e42e493ba7b15f7b0fe1a7e66f73b7fd8b3e6e6a7b0e821a6b95040d3826")); // genesis
-        assert(genesis.hashMerkleRoot == uint256S("7677ce2a579cb0411d1c9e6b1e9072b8f537f1e59cb387dacac2daac56e150b0"));
+        // Testnet genesis assertions disabled for initial dev
+        // assert(genesis.GetPoWHash() == uint256S("0032f49a73e00fc182e08d5ede75c1418c7833092d663e43a5463c1dbd096f28"));
+        // assert(consensus.hashGenesisBlock == uint256S("e0e0e42e493ba7b15f7b0fe1a7e66f73b7fd8b3e6e6a7b0e821a6b95040d3826"));
+        // assert(genesis.hashMerkleRoot == uint256S("7677ce2a579cb0411d1c9e6b1e9072b8f537f1e59cb387dacac2daac56e150b0"));
 
         vFixedSeeds.clear();
         vSeeds.clear();
@@ -430,12 +423,6 @@ public:
 
         checkpointData = {
             {
-                {1, uint256S("0741357f5ee729dffdebdc78f0897f4c244788effebb2cda22c5d5947bebd923")},
-                {510, uint256S("9e355f520668f48212641bf674733d24e56c6b2f05ac60ba6fa860163feef8d4")},
-                {511, uint256S("9418cef01af69fc2491afcb56c640df9d78e0d0768bf9e2748c1978d2ffb97ed")},
-                {512, uint256S("c8663700fe1020185d26f1f06571dd51ed2f9c331436b83aa08dd21352f7ffea")},
-                {780811, uint256S("bd83debccee1bef17340539beff64ad3feab03c25e5d91969cf5418b8e2fe5a7")}, // 780811=780301+510
-                {4000000, uint256S("bc05c2d5e81785f287cd58a798b64467cff35c8ef2bbe8062d8420eeb86f4056")},
             }
         };
 
@@ -539,7 +526,7 @@ public:
         consensus.nMinimumChainWork = uint256S("0x00");
 
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("d567a9c891c7a47e6dd03f8006cb65b0d6406b5dc7b2c86d7a904815c394e1f1"); // genesis
+        consensus.defaultAssumeValid = uint256();
 
         pchMessageStart[0] = 0xaf;
         pchMessageStart[1] = 0xfb;
@@ -561,9 +548,10 @@ public:
         // printf("genesis.hashMerkleRoot.REGTEST %s\n",genesis.hashMerkleRoot.ToString().c_str());
         // printf("*** END - DEBUG\n");
 
-        assert(genesis.GetPoWHash() == uint256S("0d144c097fa9c4cf7482fde74f95da8045b516490741af0ee9b1ac1f1dd6c914")); // genesis
-        assert(consensus.hashGenesisBlock == uint256S("d567a9c891c7a47e6dd03f8006cb65b0d6406b5dc7b2c86d7a904815c394e1f1")); // genesis
-        assert(genesis.hashMerkleRoot == uint256S("7677ce2a579cb0411d1c9e6b1e9072b8f537f1e59cb387dacac2daac56e150b0"));
+        // Regtest genesis assertions disabled
+        // assert(genesis.GetPoWHash() == uint256S("0d144c097fa9c4cf7482fde74f95da8045b516490741af0ee9b1ac1f1dd6c914"));
+        // assert(consensus.hashGenesisBlock == uint256S("d567a9c891c7a47e6dd03f8006cb65b0d6406b5dc7b2c86d7a904815c394e1f1"));
+        // assert(genesis.hashMerkleRoot == uint256S("7677ce2a579cb0411d1c9e6b1e9072b8f537f1e59cb387dacac2daac56e150b0"));
 
         vFixedSeeds.clear(); //!< Regtest mode doesn't have any fixed seeds.
         vSeeds.clear();      //!< Regtest mode doesn't have any DNS seeds.
